@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/MyTitleStyle"
+        android:text="设置中心" />
+    <com.dengyi.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.dengyi.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.dengyi.mobilesafe.view.SettingClickView
+        android:id="@+id/scv_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.dengyi.mobilesafe.view.SettingClickView
+        android:id="@+id/scv_address_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.dengyi.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_callsafe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

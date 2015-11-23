@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MobileSafe</string>
+    <string name="title_activity_app_manager">AppManagerActivity</string>
+</resources>
