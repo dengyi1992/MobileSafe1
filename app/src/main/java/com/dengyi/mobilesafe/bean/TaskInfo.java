@@ -13,6 +13,21 @@ public class TaskInfo {
     private long memorySize;
     private boolean userApk;
 
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    /**
+     * 判断当前的item的条目是否被勾选上
+     */
+    private boolean checked;
+
+
     public Drawable getIcon() {
         return icon;
     }

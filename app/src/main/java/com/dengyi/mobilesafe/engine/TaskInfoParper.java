@@ -33,11 +33,12 @@ public class TaskInfoParper {
 
             try {
 
-                Debug.MemoryInfo[] memoryInfo = activityManager.getProcessMemoryInfo(new int[1]);
-                //Dirty占用内存
-                int totalSharedDirty = memoryInfo[0].getTotalSharedDirty();
+                Debug.MemoryInfo[] memoryInfo = activityManager.getProcessMemoryInfo(new int[]{runningAppProcessInfo.pid});
+                // Dirty弄脏
+                // 获取到总共弄脏多少内存(当前应用程序占用多少内存)
+                int totalPrivateDirty = memoryInfo[0].getTotalPrivateDirty() * 1024;
 
-                taskInfo.setMemorySize(totalSharedDirty);
+                taskInfo.setMemorySize(totalPrivateDirty);
                 PackageInfo packageInfo = packageManager.getPackageInfo(processName, 0);
                 Drawable icon = packageInfo.applicationInfo.loadIcon(packageManager);
                 taskInfo.setIcon(icon);
