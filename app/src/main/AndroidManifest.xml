@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -16,11 +16,14 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.WIFI_STATE_CHANGED"/>
-    <uses-permission android:name="android.launcher2.permission.READ_SETTINGS"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WIFI_STATE_CHANGED" />
+    <uses-permission android:name="android.launcher2.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+
 
     <application
         android:allowBackup="true"
@@ -49,6 +52,7 @@
             android:name=".activity.DragActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".activity.CallSafeActivity" />
+        <activity android:name=".activity.AppManagerActivity"></activity>
 
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
@@ -73,10 +77,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity
-            android:name=".activity.AppManagerActivity"
-            android:label="@string/title_activity_app_manager"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>
