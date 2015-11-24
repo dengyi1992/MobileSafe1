@@ -23,6 +23,8 @@
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+
 
 
     <application
@@ -39,7 +41,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.HomeActivity">
+            <intent-filter>
+
+                <!-- 这个名字可以随便取 -->
+                <action android:name="aaa.bbb.ccc" >
+                </action>
+
+                <category android:name="android.intent.category.DEFAULT" >
+                </category>
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.LostFindActivity" />
         <activity android:name=".activity.Setup1Activity" />
         <activity android:name=".activity.Setup2Activity" />
