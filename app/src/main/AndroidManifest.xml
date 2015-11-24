@@ -65,6 +65,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".activity.CallSafeActivity" />
         <activity android:name=".activity.AppManagerActivity"></activity>
+        <activity android:name=".activity.TaskManagerActivity"></activity>
 
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
