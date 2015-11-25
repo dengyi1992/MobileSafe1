@@ -84,6 +84,17 @@
         <!-- <action android:name="android.intent.action.NEW_OUTGOING_CALL"/> -->
         <!-- </intent-filter> -->
         <!-- </receiver> -->
+        <receiver android:name="com.dengyi.mobilesafe.receiver.ProcessWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/process_widget_provider"/>
+        </receiver>
+        <receiver android:name=".receiver.KillProcessAllReceiver">
+            <intent-filter>
+                <action android:name="com.dengyi.mobilesafe"/>
+            </intent-filter>
+        </receiver>
 
         <service android:name=".service.AddressService" />
         <service android:name=".service.LocationService" />
@@ -93,6 +104,7 @@
             android:exported="true" />
         <!--定时清理进程-->
         <service android:name=".service.KillProcessService"></service>
+        <service android:name=".service.KillProcessWidgetService"></service>
 
     </application>
 
