@@ -65,6 +65,10 @@ public class HomeActivity extends Activity {
                         //进程管理
                         startActivity(new Intent(HomeActivity.this, TaskManagerActivity.class));
                         break;
+                    case 5:
+                        //手机杀毒
+                        startActivity(new Intent(HomeActivity.this, AntiVirusActivity.class));
+                        break;
                     case 7:
                         //跳转高级工具
                         startActivity(new Intent(HomeActivity.this, AToolsActivity.class));

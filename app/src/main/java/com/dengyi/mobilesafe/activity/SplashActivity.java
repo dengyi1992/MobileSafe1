@@ -20,11 +20,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dengyi.mobilesafe.R;
+import com.dengyi.mobilesafe.bean.Virus;
+import com.dengyi.mobilesafe.db.Dao.AntiVirusDao;
 import com.dengyi.mobilesafe.utils.StreamUtils;
+import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,6 +90,7 @@ public class SplashActivity extends Activity {
     };
     private SharedPreferences mPref;
     private RelativeLayout rlRoot;
+    private AntiVirusDao dao;
 
 
     @Override
@@ -97,7 +102,9 @@ public class SplashActivity extends Activity {
         tvVersion.setText("版本号：" + getVersionName());
         tvProgress = (TextView) findViewById(R.id.tv_progress);
         mPref = getSharedPreferences("config", MODE_PRIVATE);
-        copyDb("address.db");//拷贝数据库
+        copyDb("address.db");//拷贝归属地数据库
+        copyDb("antivirus.db");//拷贝病毒数据库
+        updateVirus();//更新病毒数据库
         //创建快捷方式
         createShortcut();
         // 判断是否需要自动更新
@@ -115,7 +122,51 @@ public class SplashActivity extends Activity {
         rlRoot.startAnimation(alphaAnimation);
 
 
+    }
 
+    /**
+     * 进行更新病毒数据库
+     * 从服务器中获取
+     */
+
+    private void updateVirus() {
+        dao = new AntiVirusDao();
+        //联网从服务器中获取到最新的数据的md5的特征码
+        HttpUtils httpUtils = new HttpUtils();
+
+        String url = "http://192.168.0.104:8080/virus.json";
+
+        httpUtils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
+
+            @Override
+            public void onFailure(HttpException arg0, String arg1) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onSuccess(ResponseInfo<String> arg0) {
+                System.out.println(arg0.result);
+//                {"md5": "3d339d7c1e2730e3a8d305460c60ed04", "desc": "JNITry是一种病毒，亲请更新"}
+                try {
+                    JSONObject jsonObject = new JSONObject(arg0.result);
+                    Gson gson = new Gson();
+                    Virus virus = gson.fromJson(arg0.result, Virus.class);
+//传统方法
+//                    String md5 = jsonObject.getString("md5");
+//                    String desc = jsonObject.getString("desc");
+//                    dao.addVirus(md5,desc);
+
+
+                    dao.addVirus(virus.md5, virus.desc);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        });
     }
 
     /**
@@ -332,9 +383,9 @@ public class SplashActivity extends Activity {
      */
     private void copyDb(String DbName) {
         File destFile = new File(getFilesDir(), DbName);
-        if (destFile.exists()){
+        if (destFile.exists()) {
             System.out.println("数据库已经存在");
-        }else {
+        } else {
             FileOutputStream fileOutputStream = null;
             InputStream inputStream = null;
             try {
@@ -359,6 +410,7 @@ public class SplashActivity extends Activity {
             }
         }
     }
+
     /**
      * 快捷方式
      */

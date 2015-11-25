@@ -68,6 +68,8 @@
         <activity android:name=".activity.AppManagerActivity"></activity>
         <activity android:name=".activity.TaskManagerActivity"></activity>
         <activity android:name=".activity.TaskSettingActivity"></activity>
+        <activity android:name=".activity.AntiVirusActivity"></activity>
+        <activity android:name=".activity.AppLock"></activity>
 
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
