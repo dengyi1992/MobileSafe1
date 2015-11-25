@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Debug;
 
+import com.dengyi.mobilesafe.R;
 import com.dengyi.mobilesafe.bean.TaskInfo;
 
 import java.util.ArrayList;
@@ -54,11 +55,16 @@ public class TaskInfoParper {
                     taskInfo.setUserApk(true);
 
                 }
-                taskInfos.add(taskInfo);
+
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+                //系统核心的应用拿不到，可以给默认图标
+                taskInfo.setAppName(processName);
+                taskInfo.setIcon(context.getResources().getDrawable(R.mipmap.ic_launcher));
 
+
+            }
+            taskInfos.add(taskInfo);
 //            activityManager.getProcessMemoryInfo(p);
         }
         return taskInfos;

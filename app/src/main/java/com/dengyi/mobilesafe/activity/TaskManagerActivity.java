@@ -95,6 +95,7 @@ public class TaskManagerActivity extends Activity {
                     TaskInfo taskInfo = (TaskInfo) object;
 
                     ViewHolder holder = (ViewHolder) view.getTag();
+                    //如果是自己就跳过
 
                     if (taskInfo.getPackageName().equals(getPackageName())) {
                         return;

@@ -48,6 +48,7 @@
                 android:paddingRight="5.0dip"
                 android:focusable="false"
                 android:clickable="false"
+                android:button="@drawable/btn_check"
                 />
         </LinearLayout>
 
